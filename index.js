@@ -26,6 +26,8 @@ async function run() {
     try {
       
         const serviceCollection = client.db('ctgFood').collection('services');
+        const reviewCollection = client.db('ctgFood').collection('reviews');
+
        
        
         
@@ -44,7 +46,18 @@ async function run() {
             res.send(service);
         });
 
-
+        // review
+        app.post('/review',async(req,res)=>{
+            const review = req.body;
+            const result = await reviewCollection.insertOne(review);
+            res.send(result);
+        })
+        app.get('/review', async(req, res) => {
+            const query = {}
+            const cursor = reviewCollection.find(query);
+            const review = await cursor.toArray();
+            res.send(review);
+        });
        
 
     }

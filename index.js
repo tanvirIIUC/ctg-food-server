@@ -25,7 +25,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
     try {
       
-        const serviceCollection = client.db('ctgCar').collection('services');
+        const serviceCollection = client.db('ctgFood').collection('services');
        
        
         
@@ -46,7 +46,7 @@ async function run() {
     }
 
 }
-run();
+run().catch(error => console.error(error));
 
 
 

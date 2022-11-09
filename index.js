@@ -28,7 +28,12 @@ async function run() {
         const serviceCollection = client.db('ctgFood').collection('services');
         const reviewCollection = client.db('ctgFood').collection('reviews');
 
-       
+       //add food
+       app.post('/services', async(req,res) =>{
+          const food = req.body;
+          const result = await serviceCollection.insertOne(food);
+          res.send(result);
+       })
        
         
 
